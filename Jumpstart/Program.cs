@@ -6,6 +6,10 @@ namespace Jumpstart
     {
         static void Main(string[] args)
         {
+            // Task_03.
+            NumeralSystemConverter a = new NumeralSystemConverter();
+            a.ParsePositiveFromDecimal(123, 16);
+
             // Task_01.
             UniqueSigns uniqueSigns = new UniqueSigns();
 
