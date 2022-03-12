@@ -80,7 +80,7 @@ namespace Jumpstart
             Console.Clear();
 
             NumeralSystemConverter converter = new NumeralSystemConverter();
-            converter.PrintResult();
+            NumeralSystemConverter.PrintResult();
         }
 
         private static void PrintMissedCommandInfo(string command)

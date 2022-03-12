@@ -13,23 +13,27 @@ namespace Jumpstart
 
     class NumeralSystemConverter
     {
-        private const string ErrorMessage1 = "Radix is invalid.";
-        private const string ErrorMessage2 = "A decimal number to convert should be more than the new base.";
-        
-        public void PrintResult()
+        private const string ErrorMessage1 = "\tThe radix is invalid.";
+        private const string ErrorMessage2 = "\tA decimal number to convert should be more than the new base.";
+        private const string NewBaseEqualsSourceNumber = "10";
+
+        public static void PrintResult()
         {
             string convertToBase = ConvertFromDecimalToBase();
-            Console.WriteLine(convertToBase != ErrorMessage1 
-                ? $"\tThe result is {convertToBase}\n" 
-                : ErrorMessage1);
+
+            Console.WriteLine(convertToBase.Equals(ErrorMessage1)
+                ? ErrorMessage1
+                : $"\tThe result is {convertToBase}\n");
         }
 
-        private string ConvertFromDecimalToBase()
+        private static string ConvertFromDecimalToBase()
         {
             int decimalNumber = InputNumber("\tInput a decimal number to convert: ");
             int radix = InputNumber("\tInput the number base to convert to: ");
 
-            if (decimalNumber < radix)
+            string result;
+
+            if (Math.Abs(decimalNumber) < radix)
             {
                 return ErrorMessage2;
             }
@@ -39,6 +43,12 @@ namespace Jumpstart
                 return ErrorMessage1;
             }
 
+            if (decimalNumber == radix)
+            {
+                result = NewBaseEqualsSourceNumber;
+                return result;
+            }
+
             bool isNegative = false;
 
             if (decimalNumber < 0)
@@ -46,9 +56,9 @@ namespace Jumpstart
                 isNegative = true;
             }
 
-            string result = radix <= 9
-                ? GetUpTo9(GetDigits((uint)decimalNumber, (uint)radix))
-                : GetHex((uint)decimalNumber, (uint)radix);
+            result = radix <= 9
+               ? GetUpTo9(GetDigits((uint)decimalNumber, (uint)radix))
+               : GetHex((uint)decimalNumber, (uint)radix);
 
             if (!isNegative)
             {
@@ -57,7 +67,7 @@ namespace Jumpstart
 
             return result;
         }
-
+        
         private static string GetHex(uint decimalNumber, uint radix)
         {
             StringBuilder stringBuilder = new StringBuilder();
