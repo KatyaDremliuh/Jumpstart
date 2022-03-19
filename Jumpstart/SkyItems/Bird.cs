@@ -4,8 +4,11 @@ namespace Jumpstart
 {
     class Bird : IFlyable
     {
+        // птица летит все расстояние с постоянной скоростью в диапазоне 0-20 км/ч (заданной случайно)
+
+        public string FlyingObject => "Bird";
+        private readonly Random _randomSpeed = new Random();
         private Coordinate _currentPosition;
-        private readonly double _speed = 50;
 
         public Bird() { }
 
@@ -14,36 +17,20 @@ namespace Jumpstart
             this._currentPosition = currentPosition;
         }
 
-        public Bird(Coordinate currentPosition, double speed)
-        {
-            this._currentPosition = currentPosition;
-            this._speed = speed;
-        }
-
         public void FlyTo(Coordinate destinationPoint)
         {
-            Console.WriteLine(_currentPosition.Info("Start"));
-            Console.WriteLine(destinationPoint.Info("End"));
+            Console.WriteLine($"{FlyingObject}\n" + _currentPosition.Info("start"));
+            Console.WriteLine(destinationPoint.Info("end"));
         }
 
         public void GetFlyTime(Coordinate nextPosition)
         {
             double distance = _currentPosition.DistanceBetweenTwoPoints(_currentPosition, nextPosition);
-            Console.WriteLine($"{distance / _speed:F3}");
-        }
+            double speed = _randomSpeed.Next(21);
 
-        public void GetFlyTime(Coordinate nextPosition, bool isWindy)
-        {
-            double distance = _currentPosition.DistanceBetweenTwoPoints(_currentPosition, nextPosition);
-
-            double speed = СalculateFlyingSpeed(isWindy);
-            
-            Console.WriteLine($"{distance / speed:F3}");
-        }
-
-        private double СalculateFlyingSpeed(bool isWindy)
-        {
-            return isWindy ? _speed / 1.3 : _speed;
+            Console.WriteLine($"Distance: {distance:F2} km" +
+                              $"\nSpeed: {speed}" +
+                              $"\nJourney time: {distance / speed:F2} h");
         }
     }
 }

@@ -1,28 +1,42 @@
-﻿namespace Jumpstart
+﻿using System;
+
+namespace Jumpstart
 {
-    class Plane 
+    class Plane : IFlyable
     {
-        public int Speed { get; }
+        // самолет увеличивает скорость на 10 км/ч каждые 10 км полета от начальной скорости 200 км/ч
 
-        public Plane(int speed = 850)
+        private static string FlyingObject => "Plane";
+        private double _speed = 200;
+        private Coordinate _currentPosition;
+
+        public Plane() { }
+
+        public Plane(Coordinate currentPosition)
         {
-            this.Speed = speed;
-        }
-
-
-        public void GetFlyTime(Coordinate currentPosition, Coordinate nextPosition, double speed)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void GetFlyTime(Coordinate currentPosition, Coordinate nextPosition, bool isWindy)
-        {
-            throw new System.NotImplementedException();
+            this._currentPosition = currentPosition;
         }
 
         public void FlyTo(Coordinate destinationPoint)
         {
-            throw new System.NotImplementedException();
+            Console.WriteLine($"{FlyingObject}\n" + _currentPosition.Info("start"));
+            Console.WriteLine(destinationPoint.Info("end"));
+        }
+
+        public void GetFlyTime(Coordinate nextPosition)
+        {
+            double distance = _currentPosition.DistanceBetweenTwoPoints(_currentPosition, nextPosition);
+
+            double route = distance;
+            while (route > 0)
+            {
+                route -= 10;
+                _speed += 10;
+            }
+
+            Console.WriteLine($"Distance: {distance:F2} km" +
+                              $"\nSpeed: {_speed}" +
+                              $"\nJourney time: {distance / _speed:F2} h");
         }
     }
 }
