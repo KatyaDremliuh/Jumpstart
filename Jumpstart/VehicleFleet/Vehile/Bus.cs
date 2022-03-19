@@ -7,6 +7,13 @@ namespace Jumpstart.VehicleFleet.Vehile
         protected override string VehicleType => "Bus";
         private readonly byte _numberOfPassengersSeats = 80;
 
+        public Bus() { }
+
+        public Bus(byte numberOfPassengers)
+        {
+            _numberOfPassengersSeats = numberOfPassengers;
+        }
+
         public override void ShowInfo()
         {
             Console.WriteLine($"\tVehicle type: {VehicleType}" +
