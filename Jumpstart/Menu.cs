@@ -171,6 +171,13 @@ namespace Jumpstart
                 Transmission = new Transmission("Mercedes-Benz", 5, TransmissionType.Automatic)
             };
 
+            Bus ikarus2000 = new(40)
+            {
+                Chassis = new Chassis("ikarus2000ChassisVin", 15000, 6),
+                Engine = new Engine(220, 4.8, "ikarus2000EngineVin"),
+                Transmission = new Transmission("JapanMotors")
+            };
+
             PassengerCar mazdaRx8 = new()
             {
                 Chassis = new Chassis("mazdaRx8ChassisVin", 1959),
@@ -193,6 +200,7 @@ namespace Jumpstart
             vehicles.Add(mazdaRx8);
             vehicles.Add(hondaAviator);
             vehicles.Add(scaniaS500);
+            vehicles.Add(ikarus2000);
 
             foreach (var vehicle in vehicles)
             {
