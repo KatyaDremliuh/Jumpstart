@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Jumpstart.VehicleFleet.Specs;
+using Jumpstart.VehicleFleet.Vehile;
+using System;
+using System.Collections.Generic;
 
 namespace Jumpstart
 {
@@ -16,6 +19,7 @@ namespace Jumpstart
             new Tuple<string, Action<string>>("exit", Exit),
             new Tuple<string, Action<string>>("1", CountUniqueSigns),
             new Tuple<string, Action<string>>("2", ConvertNumber),
+            new Tuple<string, Action<string>>("3", CreateVehileFleet),
             new Tuple<string, Action<string>>("description", ShowProgramDescription)
         };
 
@@ -25,6 +29,7 @@ namespace Jumpstart
             new string[] { "exit", "exits the application" },
             new string[] { "1", "shows the length of the longest sequence with non-repetitive signs." },
             new string[] { "2", "converts from decimal." },
+            new string[] { "3", "shows specs of cars in the vehile fleet." },
             new string[] { "description", "shows rules for each game" }
         };
 
@@ -127,10 +132,14 @@ namespace Jumpstart
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("\tThe 1-st program shows the length of the longest sequence with non-repetitive signs.\n");
-
             Console.ResetColor();
+
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\tThe 2-nd program converts a decimal number system to any numeral system from 2 to 20.");
+            Console.WriteLine("\tThe 2-nd program converts a decimal number system to any numeral system from 2 to 20.\n");
+            Console.ResetColor();
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("\tThe 3-rd program shows specs of cars in the vehile fleet.\n");
             Console.ResetColor();
         }
 
@@ -149,6 +158,47 @@ namespace Jumpstart
             }
 
             Console.WriteLine();
+        }
+
+        private static void CreateVehileFleet(string command)
+        {
+            Console.Clear();
+
+            Bus maz203 = new()
+            {
+                Chassis = new Chassis("maz203ChassisVin", 20000, 8),
+                Engine = new Engine(210, 6.37, "maz203EngineVin"),
+                Transmission = new Transmission("Mercedes-Benz", 5, TransmissionType.Automatic)
+            };
+
+            PassengerCar mazdaRx8 = new()
+            {
+                Chassis = new Chassis("mazdaRx8ChassisVin", 1959),
+                Engine = new Engine(250, 1.3, "mazdaRx8EngineVin"),
+                Transmission = new Transmission("Mazda", 6)
+            };
+
+            Scooter hondaAviator = new Scooter();
+            hondaAviator.Chassis = new Chassis("hondaAviatorChassisVin", 326, 2);
+            hondaAviator.Engine = new Engine(109, 6, "hondaAviatorEngineVin");
+            hondaAviator.Transmission = new Transmission("Honda", 3, TransmissionType.Hydromechanical);
+
+            Truck scaniaS500 = new Truck();
+            scaniaS500.Chassis = new Chassis("scaniaS500ChassisVin", 39270, 6);
+            scaniaS500.Engine = new Engine(500, 7.94, "scaniaS500EngineVin", EngineType.Diesel);
+            scaniaS500.Transmission = new Transmission("ScaniaAb", 5, TransmissionType.Automatic);
+
+            List<Vehicle> vehicles = new List<Vehicle>();
+            vehicles.Add(maz203);
+            vehicles.Add(mazdaRx8);
+            vehicles.Add(hondaAviator);
+            vehicles.Add(scaniaS500);
+
+            foreach (var vehicle in vehicles)
+            {
+                vehicle.ShowInfo();
+                Console.WriteLine();
+            }
         }
     }
 }
