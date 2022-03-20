@@ -4,11 +4,10 @@ namespace Jumpstart
 {
     class Drone : IFlyable
     {
-        // дрон зависает в воздухе каждые 10 минут полета на 1 минуту
-
-        private static string FlyingObject => "Drone";
+        public string FlyingObject => "Drone";
         private double Speed { get; set; }
         private Coordinate _currentPosition;
+        private const double MaxDistance = 1000;
 
         public Drone(double speed)
         {
@@ -31,16 +30,35 @@ namespace Jumpstart
         {
             const int minutesInHour = 60;
 
-            double distance = _currentPosition.DistanceBetweenTwoPoints(_currentPosition, nextPosition);
+            double distanceNeedToFly = _currentPosition.DistanceBetweenTwoPoints(_currentPosition, nextPosition);
 
-            double idealJourneyTimeInHours = distance / Speed;
+            if (!IsChargedBattery(distanceNeedToFly))
+            {
+                distanceNeedToFly = MaxDistance;
+            }
+
+            double idealJourneyTimeInHours = distanceNeedToFly / Speed;
             double idealJourneyTimeInMinutes = idealJourneyTimeInHours * minutesInHour;
             int wastedTime = (int)idealJourneyTimeInMinutes / 10;
             double realJourneyTimeInMinutes = idealJourneyTimeInMinutes + wastedTime;
 
-            Console.WriteLine($"Distance: {distance:F2} km" +
+            Console.WriteLine($"Distance: {distanceNeedToFly:F2} km" +
                               $"\nSpeed: {Speed}" +
                               $"\nJourney time: {realJourneyTimeInMinutes / minutesInHour:F2} h");
+        }
+
+        /// <summary>
+        /// The method verifies if the distance that a drone needs to fly is valid.
+        /// The drone can fly only 1000 km. If the distance between the start-point
+        /// and the destination-point is more than 1000 km the battery is low.
+        /// </summary>
+        /// <param name="distanceNeedToFly">The distance between point A and B.</param>
+        /// <returns></returns>
+        private static bool IsChargedBattery(double distanceNeedToFly)
+        {
+            bool isChargetBattery = distanceNeedToFly <= 1000;
+
+            return isChargetBattery;
         }
     }
 }
