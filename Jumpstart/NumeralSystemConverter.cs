@@ -23,7 +23,7 @@ namespace Jumpstart
 
             Console.WriteLine(convertToBase.Equals(ErrorMessage1)
                 ? ErrorMessage1
-                : $"\tThe result is {convertToBase}\n");
+                : $"\tThe result is: {convertToBase}.\n");
         }
 
         private static string ConvertFromDecimalToBase()

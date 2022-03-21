@@ -4,11 +4,10 @@ namespace Jumpstart
 {
     class Plane : IFlyable
     {
-        // самолет увеличивает скорость на 10 км/ч каждые 10 км полета от начальной скорости 200 км/ч
-
-        private static string FlyingObject => "Plane";
-        private double _speed = 200;
         private Coordinate _currentPosition;
+        private static string FlyingObject => "Plane";
+        private ushort _speed = 200;
+        private const ushort MaxPlaneSpeed = 900;
 
         public Plane() { }
 
@@ -25,18 +24,56 @@ namespace Jumpstart
 
         public void GetFlyTime(Coordinate nextPosition)
         {
-            double distance = _currentPosition.DistanceBetweenTwoPoints(_currentPosition, nextPosition);
+            double distanceNeedToFly = _currentPosition.DistanceBetweenTwoPoints(_currentPosition, nextPosition);
+            double fullJourneyTime = CalculateFullTime(distanceNeedToFly);
 
-            double route = distance;
-            while (route > 0)
+            Console.WriteLine($"Distance: {distanceNeedToFly:F2} km" +
+                              $"\nMax speed: {_speed:F2} km/h" +
+                              $"\nJourney time: {fullJourneyTime:F2} h\n");
+        }
+
+        /// <summary>
+        /// The method calculates the full travel time.
+        /// The initial plane's speed is 200 km/h.
+        /// The speed grows every 10 km of flight by 10 km/h.
+        /// If the plane has reached its maximum speed
+        /// it flies the rest of the way with the maximum speed, that is 900 km/h.
+        /// </summary>
+        /// <param name="distanceNeedToFly">The distance between point A and B.</param>
+        /// <returns></returns>
+        private double CalculateFullTime(double distanceNeedToFly)
+        {
+            const double pastDistance = 10;
+            double spentTime = 0;
+
+            if (distanceNeedToFly <= pastDistance)
             {
-                route -= 10;
-                _speed += 10;
+                return distanceNeedToFly / _speed;
             }
 
-            Console.WriteLine($"Distance: {distance:F2} km" +
-                              $"\nSpeed: {_speed}" +
-                              $"\nJourney time: {distance / _speed:F2} h");
+            do
+            {
+                spentTime += pastDistance / _speed;
+
+                if (!IsSpeedMax(_speed))
+                {
+                    _speed += 10;
+                }
+                else
+                {
+                    _speed = MaxPlaneSpeed;
+                }
+
+                distanceNeedToFly -= 10;
+            }
+            while (distanceNeedToFly >= pastDistance && _speed != MaxPlaneSpeed);
+
+            return (distanceNeedToFly / _speed) + spentTime;
+        }
+
+        private static bool IsSpeedMax(ushort currentSpeed)
+        {
+            return currentSpeed >= MaxPlaneSpeed;
         }
     }
 }

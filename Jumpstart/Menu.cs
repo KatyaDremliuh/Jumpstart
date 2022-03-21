@@ -20,6 +20,7 @@ namespace Jumpstart
             new Tuple<string, Action<string>>("1", CountUniqueSigns),
             new Tuple<string, Action<string>>("2", ConvertNumber),
             new Tuple<string, Action<string>>("3", CreateVehileFleet),
+            new Tuple<string, Action<string>>("4", CreateSkyItems),
             new Tuple<string, Action<string>>("description", ShowProgramDescription)
         };
 
@@ -30,6 +31,7 @@ namespace Jumpstart
             new string[] { "1", "shows the length of the longest sequence with non-repetitive signs." },
             new string[] { "2", "converts from decimal." },
             new string[] { "3", "shows specs of cars in the vehile fleet." },
+            new string[] { "4", "shows items that can fly." },
             new string[] { "description", "shows rules for each game" }
         };
 
@@ -76,8 +78,8 @@ namespace Jumpstart
             UniqueSigns uniqueSigns = new UniqueSigns();
 
             Console.WriteLine(
-                $"The length of the longest sequence with non-repetitive signs is" +
-                $" {uniqueSigns.FindVariousChars()}\n");
+                $"The length of the longest sequence with non-repetitive signs is:" +
+                $" {uniqueSigns.FindVariousChars()}.\n");
         }
 
         private static void ConvertNumber(string command)
@@ -140,6 +142,14 @@ namespace Jumpstart
 
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("\tThe 3-rd program shows specs of cars in the vehile fleet.\n");
+            Console.ResetColor();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\tThe 4-th program creates items that can fly and shows the following positions:" +
+                              "\n\t- the start and the finish coordinates;" +
+                              "\n\t- time spent to fly from the start point to destination point;" +
+                              "\n\t- flying speed;" +
+                              "\n\t- distance.\n");
             Console.ResetColor();
         }
 
@@ -207,6 +217,33 @@ namespace Jumpstart
                 vehicle.ShowInfo();
                 Console.WriteLine();
             }
+        }
+
+        private static void CreateSkyItems(string command)
+        {
+            Console.Clear();
+
+            Coordinate destination = new Coordinate(44, 44, 44);
+
+            Bird birdNoWind = new Bird();
+            Bird birdWithWind = new Bird(true);
+            Drone drone = new Drone(78);
+            Plane plane = new Plane();
+
+            List<IFlyable> flyingObjects = new() { birdNoWind, birdWithWind, drone, plane };
+
+            flyingObjects[0].FlyTo(destination);
+            foreach (var flyingObject in flyingObjects)
+            {
+                Console.WriteLine($"----- {RecognizeFlyingObjectType(flyingObject)} -----");
+                flyingObject.GetFlyTime(destination);
+            }
+        }
+
+        private static string RecognizeFlyingObjectType(IFlyable flyingObject)
+        {
+            string fullName = flyingObject.GetType().ToString();
+            return fullName[(fullName.LastIndexOf('.') + 1)..];
         }
     }
 }
