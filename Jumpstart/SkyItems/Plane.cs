@@ -4,9 +4,9 @@ namespace Jumpstart
 {
     class Plane : IFlyable
     {
+        private Coordinate _currentPosition;
         private static string FlyingObject => "Plane";
         private ushort _speed = 200;
-        private Coordinate _currentPosition;
         private const ushort MaxPlaneSpeed = 900;
 
         public Plane() { }
@@ -28,8 +28,8 @@ namespace Jumpstart
             double fullJourneyTime = CalculateFullTime(distanceNeedToFly);
 
             Console.WriteLine($"Distance: {distanceNeedToFly:F2} km" +
-                              $"\nMax speed: {_speed} km/h" +
-                              $"\nJourney time: {fullJourneyTime:F2} h");
+                              $"\nMax speed: {_speed:F2} km/h" +
+                              $"\nJourney time: {fullJourneyTime:F2} h\n");
         }
 
         /// <summary>
@@ -68,9 +68,7 @@ namespace Jumpstart
             }
             while (distanceNeedToFly >= pastDistance && _speed != MaxPlaneSpeed);
 
-            double fullJourneyTime = (distanceNeedToFly / _speed) + spentTime;
-
-            return fullJourneyTime;
+            return (distanceNeedToFly / _speed) + spentTime;
         }
 
         private static bool IsSpeedMax(ushort currentSpeed)

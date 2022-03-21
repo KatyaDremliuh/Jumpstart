@@ -4,9 +4,9 @@ namespace Jumpstart
 {
     class Drone : IFlyable
     {
-        public string FlyingObject => "Drone";
-        private double Speed { get; set; }
         private Coordinate _currentPosition;
+        public static string FlyingObject => "Drone";
+        private double Speed { get; }
         private const double MaxDistance = 1000;
 
         public Drone(double speed)
@@ -43,8 +43,8 @@ namespace Jumpstart
             double realJourneyTimeInMinutes = idealJourneyTimeInMinutes + wastedTime;
 
             Console.WriteLine($"Distance: {distanceNeedToFly:F2} km" +
-                              $"\nSpeed: {Speed}" +
-                              $"\nJourney time: {realJourneyTimeInMinutes / minutesInHour:F2} h");
+                              $"\nSpeed: {Speed:F2}" +
+                              $"\nJourney time: {realJourneyTimeInMinutes / minutesInHour:F2} h\n");
         }
 
         /// <summary>
