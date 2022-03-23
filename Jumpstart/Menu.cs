@@ -2,6 +2,8 @@
 using Jumpstart.VehicleFleet.Vehile;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Jumpstart
 {
@@ -174,49 +176,244 @@ namespace Jumpstart
         {
             Console.Clear();
 
-            Bus maz203 = new()
-            {
-                Chassis = new Chassis("maz203ChassisVin", 20000, 8),
-                Engine = new Engine(210, 6.37, "maz203EngineVin"),
-                Transmission = new Transmission("Mercedes-Benz", 5, TransmissionType.Automatic)
-            };
-
-            Bus ikarus2000 = new(40)
-            {
-                Chassis = new Chassis("ikarus2000ChassisVin", 15000, 6),
-                Engine = new Engine(220, 4.8, "ikarus2000EngineVin"),
-                Transmission = new Transmission("JapanMotors")
-            };
-
             PassengerCar mazdaRx8 = new()
             {
-                Chassis = new Chassis("mazdaRx8ChassisVin", 1959),
-                Engine = new Engine(250, 1.3, "mazdaRx8EngineVin"),
-                Transmission = new Transmission("Mazda", 6)
+                Chassis = new Chassis("240/40R18", 1710),
+                Engine = new Engine(250, 1.8, "JHLRE4857T7C415490"),
+                Transmission = new Transmission("Japan", 6)
             };
 
-            Scooter hondaAviator = new Scooter();
-            hondaAviator.Chassis = new Chassis("hondaAviatorChassisVin", 326, 2);
-            hondaAviator.Engine = new Engine(109, 6, "hondaAviatorEngineVin");
-            hondaAviator.Transmission = new Transmission("Honda", 3, TransmissionType.Hydromechanical);
-
-            Truck scaniaS500 = new Truck();
-            scaniaS500.Chassis = new Chassis("scaniaS500ChassisVin", 39270, 6);
-            scaniaS500.Engine = new Engine(500, 7.94, "scaniaS500EngineVin", EngineType.Diesel);
-            scaniaS500.Transmission = new Transmission("ScaniaAb", 5, TransmissionType.Automatic);
-
-            List<Vehicle> vehicles = new List<Vehicle>();
-            vehicles.Add(maz203);
-            vehicles.Add(mazdaRx8);
-            vehicles.Add(hondaAviator);
-            vehicles.Add(scaniaS500);
-            vehicles.Add(ikarus2000);
-
-            foreach (var vehicle in vehicles)
+            PassengerCar volkswagenScirocco = new()
             {
-                vehicle.ShowInfo();
-                Console.WriteLine();
+                Chassis = new Chassis("235/45R17", 1716),
+                Engine = new Engine(250, 2, "WVWZZZ13Z9V013898"),
+                Transmission = new Transmission("Germany", 6)
+            };
+
+            PassengerCar hondaInsight = new()
+            {
+                Chassis = new Chassis("205/65R16", 1654),
+                Engine = new Engine(115, 1.6, "JHRWE25568V416434", EngineType.Electro),
+                Transmission = new Transmission("Japan", 7, TransmissionType.Automatic)
+            };
+
+            PassengerCar opelVectra = new()
+            {
+                Chassis = new Chassis("195/60R15", 1850),
+                Engine = new Engine(112, 2, "WVRTYT14T9N013856", EngineType.Diesel),
+                Transmission = new Transmission("Germany", 3)
+            };
+
+            PassengerCar bmw735 = new()
+            {
+                Chassis = new Chassis("280/50R20", 2200),
+                Engine = new Engine(245, 3.5, "WNXRFT16T9V043965", EngineType.Diesel),
+                Transmission = new Transmission("Germany", 8, TransmissionType.Hydromechanical)
+            };
+
+            PassengerCar peugeot308 = new()
+            {
+                Chassis = new Chassis("210/55R16", 1900),
+                Engine = new Engine(120, 1.6, "VRJDNRI15DIK40322", EngineType.Diesel),
+                Transmission = new Transmission("France", 6)
+            };
+
+            PassengerCar alfaRomeoStelvio = new()
+            {
+                Chassis = new Chassis("240/50R19", 2400),
+                Engine = new Engine(210, 2.2, "ZRIFWMR58EMO12957", EngineType.Diesel),
+                Transmission = new Transmission("Italy", 8, TransmissionType.Automatic)
+            };
+
+            Truck ivecoDaily = new()
+            {
+                Chassis = new Chassis("205/60R17", 3300),
+                Engine = new Engine(190, 2.3, "ZARTYIN74DFK12937", EngineType.Diesel),
+                Transmission = new Transmission("Italy")
+            };
+
+            Truck scania124 = new()
+            {
+                Chassis = new Chassis("280/70R22", 18000, 6),
+                Engine = new Engine(420, 12, "YSMVVL30MKCU84635", EngineType.Diesel),
+                Transmission = new Transmission("Sweden", 6)
+            };
+
+            Truck mercedesBenzSprinter316 = new()
+            {
+                Chassis = new Chassis("210/60R17", 3400),
+                Engine = new Engine(163, 2.2, "WKESDP27000S63943", EngineType.Diesel),
+                Transmission = new Transmission("Germany")
+
+            };
+
+            Truck volvoFmx = new()
+            {
+                Chassis = new Chassis("385/65R22,5", 32000, 10),
+                Engine = new Engine(510, 12, "YWJGFJ130MFI47608", EngineType.Diesel),
+                Transmission = new Transmission("Sweden", 8, TransmissionType.Automatic)
+            };
+
+            Truck fordTransit = new()
+            {
+                Chassis = new Chassis("220/55R16", 3200, 6),
+                Engine = new Engine(186, 2.2, "A5KDPE139IMM34021", EngineType.Diesel),
+                Transmission = new Transmission("USA")
+            };
+
+            Bus neoplanN116 = new()
+            {
+                Chassis = new Chassis("270/75R23", 18000, 6),
+                Engine = new Engine(380, 12.6, "WMWRC31060TB95535", EngineType.Diesel),
+                Transmission = new Transmission("Germany", 12, TransmissionType.Automatic)
+            };
+
+            Bus scaniaIrizar = new()
+            {
+                Chassis = new Chassis("260/70R22.5", 19000, 6),
+                Engine = new Engine(420, 12, "YSWNI349EK2D28726", EngineType.Diesel),
+                Transmission = new Transmission("Sweden", 6)
+            };
+
+            Bus mercedesBenzSprinter = new()
+            {
+                Chassis = new Chassis("220/50R16", 3460, 6),
+                Engine = new Engine(198, 2.2, "WP1AB29P66LA68044", EngineType.Diesel),
+                Transmission = new Transmission("Germany", 7, TransmissionType.Automatic)
+            };
+
+            Bus citroenJumper = new()
+            {
+                Chassis = new Chassis("205/55R16", 3100),
+                Engine = new Engine(175, 2.2, "VFTYN448TY3E22987", EngineType.Diesel),
+                Transmission = new Transmission("France")
+            };
+
+            Bus renaultMasterL3H2 = new()
+            {
+                Chassis = new Chassis("230/50R17", 3300),
+                Engine = new Engine(204, 2.3, "VRKLI654F3WE78310", EngineType.Diesel),
+                Transmission = new Transmission("France")
+            };
+
+            Scooter hondaSh = new()
+            {
+                Chassis = new Chassis("100/8016M/C", 180, 2),
+                Engine = new Engine(16, 1.53, "JT111TJ8007010945"),
+                Transmission = new Transmission("Japan", 4)
+            };
+
+            Scooter kymcoAgility = new()
+            {
+                Chassis = new Chassis("125/5010M/С", 173, 2),
+                Engine = new Engine(14, 0.49, "KPTG0B1FS6P213479"),
+                Transmission = new Transmission("China", 4, TransmissionType.Automatic)
+            };
+
+            Scooter suzukiBurgman = new()
+            {
+                Chassis = new Chassis("150/7012M/С", 350, 2),
+                Engine = new Engine(33, 0.4, "JF1GGGKD37G038841"),
+                Transmission = new Transmission("Japan", 4, TransmissionType.Automatic)
+            };
+
+            Scooter racherAlphaRc50 = new()
+            {
+                Chassis = new Chassis("70/10017М/С", 180, 2),
+                Engine = new Engine(14, 0.5, "KMHBT31GP3U013758"),
+                Transmission = new Transmission("China", 4)
+            };
+
+            Scooter minskVesna125 = new()
+            {
+                Chassis = new Chassis("75/6012М/С", 175, 2),
+                Engine = new Engine(8, 0.125, "Y5DIM323IN4R43783"),
+                Transmission = new Transmission("Belarus", 4, TransmissionType.Automatic)
+            };
+
+            List<Vehicle> auto = new List<Vehicle>
+            {
+                mazdaRx8,
+                volkswagenScirocco,
+                hondaInsight,
+                opelVectra,
+                bmw735,
+                peugeot308,
+                alfaRomeoStelvio,
+                ivecoDaily,
+                scania124,
+                mercedesBenzSprinter316,
+                volvoFmx,
+                fordTransit,
+                neoplanN116,
+                scaniaIrizar,
+                mercedesBenzSprinter,
+                citroenJumper,
+                renaultMasterL3H2,
+                hondaSh,
+                kymcoAgility,
+                suzukiBurgman,
+                racherAlphaRc50,
+                minskVesna125
+            };
+
+            ShowServiceInformation("Cars that have engine capacity more than 1.5 litres:", ConsoleColor.Red);
+            GetCarsWithBigEngineCapacity(auto, 1.5);
+
+            ShowServiceInformation("Engine specs for trucks:", ConsoleColor.Yellow);
+            GetEngineSpecs(auto, "Truck");
+
+            ShowServiceInformation("Engine specs for buses:", ConsoleColor.Green);
+            GetEngineSpecs(auto, "Bus");
+
+            ShowServiceInformation("Full information about all vehiles grouped by transmission:", ConsoleColor.Blue);
+            GetFullInformationGroupedByTransmission(auto);
+        }
+
+        private static void GetCarsWithBigEngineCapacity(List<Vehicle> auto, double engineCapacity)
+        {
+            var engineCapacityMore15 = from car in auto
+                                       where car.Engine.EngineCapacity > engineCapacity
+                                       select car;
+
+            foreach (Vehicle car in engineCapacityMore15)
+            {
+                car.ShowInfo();
             }
+        }
+
+        private static void GetEngineSpecs(List<Vehicle> auto, string vehicleType)
+        {
+            var engineSpecsForTrucks =
+                auto.Where(
+                car => car.VehicleType.Equals(vehicleType, StringComparison.Ordinal));
+            
+            foreach (Vehicle car in engineSpecsForTrucks)
+            {
+                Console.WriteLine($"{car.VehicleType}\n" +
+                                  $"\tEngine type: {car.Engine.EngineType}\n" +
+                                  $"\tEngine Vin number: {car.Engine.VinNumber}\n" +
+                                  $"\tEngine power: {car.Engine.Power}\n");
+            }
+        }
+
+        private static void GetFullInformationGroupedByTransmission(List<Vehicle> auto)
+        {
+            var carsByTransmission =
+                auto.OrderBy(
+                    car => car.Transmission.TransmissionType);
+
+            foreach (var car in carsByTransmission)
+            {
+                car.ShowInfo();
+            }
+        }
+
+        private static void ShowServiceInformation(string message, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine($"{message}\n");
+            Console.ResetColor();
         }
 
         private static void CreateSkyItems(string command)
