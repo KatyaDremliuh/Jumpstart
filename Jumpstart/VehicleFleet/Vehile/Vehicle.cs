@@ -22,7 +22,7 @@ namespace Jumpstart.VehicleFleet.Vehile
 
         public virtual void ShowInfo()
         {
-            Console.WriteLine($"\tVehicle type: {VehicleType}" +
+            Console.WriteLine($"\tVehicle type: {VehicleType} **{CarModel}**" +
                               $"\n---Chassis description---" +
                               $"\n\tWheel: {Chassis.Wheel}" +
                               $"\n\tChassis Vin number: {Chassis.VinChassis}" +

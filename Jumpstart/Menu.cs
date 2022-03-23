@@ -3,7 +3,6 @@ using Jumpstart.VehicleFleet.Vehile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Jumpstart
 {
@@ -178,6 +177,7 @@ namespace Jumpstart
 
             PassengerCar mazdaRx8 = new()
             {
+                CarModel = "Mazda RX8",
                 Chassis = new Chassis("240/40R18", 1710),
                 Engine = new Engine(250, 1.8, "JHLRE4857T7C415490"),
                 Transmission = new Transmission("Japan", 6)
@@ -185,6 +185,7 @@ namespace Jumpstart
 
             PassengerCar volkswagenScirocco = new()
             {
+                CarModel = "Volkswagen Scirocco",
                 Chassis = new Chassis("235/45R17", 1716),
                 Engine = new Engine(250, 2, "WVWZZZ13Z9V013898"),
                 Transmission = new Transmission("Germany", 6)
@@ -192,6 +193,7 @@ namespace Jumpstart
 
             PassengerCar hondaInsight = new()
             {
+                CarModel = "Honda Insight",
                 Chassis = new Chassis("205/65R16", 1654),
                 Engine = new Engine(115, 1.6, "JHRWE25568V416434", EngineType.Electro),
                 Transmission = new Transmission("Japan", 7, TransmissionType.Automatic)
@@ -199,6 +201,7 @@ namespace Jumpstart
 
             PassengerCar opelVectra = new()
             {
+                CarModel = "Opel Vectra",
                 Chassis = new Chassis("195/60R15", 1850),
                 Engine = new Engine(112, 2, "WVRTYT14T9N013856", EngineType.Diesel),
                 Transmission = new Transmission("Germany", 3)
@@ -206,6 +209,7 @@ namespace Jumpstart
 
             PassengerCar bmw735 = new()
             {
+                CarModel = "BMW-735",
                 Chassis = new Chassis("280/50R20", 2200),
                 Engine = new Engine(245, 3.5, "WNXRFT16T9V043965", EngineType.Diesel),
                 Transmission = new Transmission("Germany", 8, TransmissionType.Hydromechanical)
@@ -213,6 +217,7 @@ namespace Jumpstart
 
             PassengerCar peugeot308 = new()
             {
+                CarModel = "Peugeot-308",
                 Chassis = new Chassis("210/55R16", 1900),
                 Engine = new Engine(120, 1.6, "VRJDNRI15DIK40322", EngineType.Diesel),
                 Transmission = new Transmission("France", 6)
@@ -220,6 +225,7 @@ namespace Jumpstart
 
             PassengerCar alfaRomeoStelvio = new()
             {
+                CarModel = "Alfa Romeo Stelvio",
                 Chassis = new Chassis("240/50R19", 2400),
                 Engine = new Engine(210, 2.2, "ZRIFWMR58EMO12957", EngineType.Diesel),
                 Transmission = new Transmission("Italy", 8, TransmissionType.Automatic)
@@ -227,6 +233,7 @@ namespace Jumpstart
 
             Truck ivecoDaily = new()
             {
+                CarModel = "Iveco Daily",
                 Chassis = new Chassis("205/60R17", 3300),
                 Engine = new Engine(190, 2.3, "ZARTYIN74DFK12937", EngineType.Diesel),
                 Transmission = new Transmission("Italy")
@@ -234,6 +241,7 @@ namespace Jumpstart
 
             Truck scania124 = new()
             {
+                CarModel = "Scania-124",
                 Chassis = new Chassis("280/70R22", 18000, 6),
                 Engine = new Engine(420, 12, "YSMVVL30MKCU84635", EngineType.Diesel),
                 Transmission = new Transmission("Sweden", 6)
@@ -241,14 +249,15 @@ namespace Jumpstart
 
             Truck mercedesBenzSprinter316 = new()
             {
+                CarModel = "Mercedes-Benz Sprinter-316",
                 Chassis = new Chassis("210/60R17", 3400),
                 Engine = new Engine(163, 2.2, "WKESDP27000S63943", EngineType.Diesel),
                 Transmission = new Transmission("Germany")
-
             };
 
             Truck volvoFmx = new()
             {
+                CarModel = "Volvo FMX",
                 Chassis = new Chassis("385/65R22,5", 32000, 10),
                 Engine = new Engine(510, 12, "YWJGFJ130MFI47608", EngineType.Diesel),
                 Transmission = new Transmission("Sweden", 8, TransmissionType.Automatic)
@@ -256,6 +265,7 @@ namespace Jumpstart
 
             Truck fordTransit = new()
             {
+                CarModel = "Ford Transit",
                 Chassis = new Chassis("220/55R16", 3200, 6),
                 Engine = new Engine(186, 2.2, "A5KDPE139IMM34021", EngineType.Diesel),
                 Transmission = new Transmission("USA")
@@ -263,6 +273,7 @@ namespace Jumpstart
 
             Bus neoplanN116 = new()
             {
+                CarModel = "Neoplan-N116",
                 Chassis = new Chassis("270/75R23", 18000, 6),
                 Engine = new Engine(380, 12.6, "WMWRC31060TB95535", EngineType.Diesel),
                 Transmission = new Transmission("Germany", 12, TransmissionType.Automatic)
@@ -270,6 +281,7 @@ namespace Jumpstart
 
             Bus scaniaIrizar = new()
             {
+                CarModel = "Scania Irizar",
                 Chassis = new Chassis("260/70R22.5", 19000, 6),
                 Engine = new Engine(420, 12, "YSWNI349EK2D28726", EngineType.Diesel),
                 Transmission = new Transmission("Sweden", 6)
@@ -277,6 +289,7 @@ namespace Jumpstart
 
             Bus mercedesBenzSprinter = new()
             {
+                CarModel = "Mercedes-Benz Sprinter",
                 Chassis = new Chassis("220/50R16", 3460, 6),
                 Engine = new Engine(198, 2.2, "WP1AB29P66LA68044", EngineType.Diesel),
                 Transmission = new Transmission("Germany", 7, TransmissionType.Automatic)
@@ -284,6 +297,7 @@ namespace Jumpstart
 
             Bus citroenJumper = new()
             {
+                CarModel = "Citroen Jumper",
                 Chassis = new Chassis("205/55R16", 3100),
                 Engine = new Engine(175, 2.2, "VFTYN448TY3E22987", EngineType.Diesel),
                 Transmission = new Transmission("France")
@@ -291,6 +305,7 @@ namespace Jumpstart
 
             Bus renaultMasterL3H2 = new()
             {
+                CarModel = "Renault Master-L3H2",
                 Chassis = new Chassis("230/50R17", 3300),
                 Engine = new Engine(204, 2.3, "VRKLI654F3WE78310", EngineType.Diesel),
                 Transmission = new Transmission("France")
@@ -298,6 +313,7 @@ namespace Jumpstart
 
             Scooter hondaSh = new()
             {
+                CarModel = "Honda-SH",
                 Chassis = new Chassis("100/8016M/C", 180, 2),
                 Engine = new Engine(16, 1.53, "JT111TJ8007010945"),
                 Transmission = new Transmission("Japan", 4)
@@ -305,6 +321,7 @@ namespace Jumpstart
 
             Scooter kymcoAgility = new()
             {
+                CarModel = "Kymco Agility",
                 Chassis = new Chassis("125/5010M/С", 173, 2),
                 Engine = new Engine(14, 0.49, "KPTG0B1FS6P213479"),
                 Transmission = new Transmission("China", 4, TransmissionType.Automatic)
@@ -312,6 +329,7 @@ namespace Jumpstart
 
             Scooter suzukiBurgman = new()
             {
+                CarModel = "Suzuki Burgman",
                 Chassis = new Chassis("150/7012M/С", 350, 2),
                 Engine = new Engine(33, 0.4, "JF1GGGKD37G038841"),
                 Transmission = new Transmission("Japan", 4, TransmissionType.Automatic)
@@ -319,6 +337,7 @@ namespace Jumpstart
 
             Scooter racherAlphaRc50 = new()
             {
+                CarModel = "Racher Alpha-RC50",
                 Chassis = new Chassis("70/10017М/С", 180, 2),
                 Engine = new Engine(14, 0.5, "KMHBT31GP3U013758"),
                 Transmission = new Transmission("China", 4)
@@ -326,6 +345,7 @@ namespace Jumpstart
 
             Scooter minskVesna125 = new()
             {
+                CarModel = "Minsk Vesna-125",
                 Chassis = new Chassis("75/6012М/С", 175, 2),
                 Engine = new Engine(8, 0.125, "Y5DIM323IN4R43783"),
                 Transmission = new Transmission("Belarus", 4, TransmissionType.Automatic)
@@ -390,7 +410,7 @@ namespace Jumpstart
             
             foreach (Vehicle car in engineSpecsForTrucks)
             {
-                Console.WriteLine($"{car.VehicleType}\n" +
+                Console.WriteLine($"{car.VehicleType} **{car.CarModel}**\n" +
                                   $"\tEngine type: {car.Engine.EngineType}\n" +
                                   $"\tEngine Vin number: {car.Engine.VinNumber}\n" +
                                   $"\tEngine power: {car.Engine.Power}\n");
