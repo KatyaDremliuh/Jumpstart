@@ -4,7 +4,7 @@ namespace Jumpstart.VehicleFleet.Vehile
 {
     class Truck : Vehicle
     {
-        protected override string VehicleType => "Truck";
+        public override string VehicleType => "Truck";
 
         private readonly bool _bodyWork = true; // кузов
 
@@ -24,7 +24,7 @@ namespace Jumpstart.VehicleFleet.Vehile
                               $"\n---Transmission description---" +
                               $"\n\tTransmission type: {Transmission.TransmissionType}" +
                               $"\n\tNumber of transmission: {Transmission.NumberOfTransmission}" +
-                              $"\n\tVendor: {Transmission.Vendor}");
+                              $"\n\tVendor: {Transmission.Vendor}\n");
         }
     }
 }

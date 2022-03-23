@@ -4,7 +4,7 @@ namespace Jumpstart.VehicleFleet.Vehile
 {
     public class Bus : Vehicle
     {
-        protected override string VehicleType => "Bus";
+        public override string VehicleType => "Bus";
         private readonly byte _numberOfPassengersSeats = 80;
 
         public Bus() { }
@@ -31,7 +31,7 @@ namespace Jumpstart.VehicleFleet.Vehile
                               $"\n\tNumber of transmission: {Transmission.NumberOfTransmission}" +
                               $"\n\tVendor: {Transmission.Vendor}" +
                               $"\n---Seating capacity--" +
-                              $"\n\tNumber of passengers seats: {_numberOfPassengersSeats}");
+                              $"\n\tNumber of passengers seats: {_numberOfPassengersSeats}\n");
         }
     }
 }

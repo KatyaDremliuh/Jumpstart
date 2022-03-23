@@ -2,12 +2,12 @@
 {
     public class Engine
     {
-        public int Power { get; set; }
-        public double EngineCapacity { get; set; }
+        public ushort Power { get; set; } // л.с.
+        public double EngineCapacity { get; set; } // л
         public EngineType EngineType { get; set; }
         public string VinNumber { get; set; }
 
-        public Engine(int power, double engineCapacity, string vinNumber, EngineType engineType = EngineType.Petrol)
+        public Engine(ushort power, double engineCapacity, string vinNumber, EngineType engineType = EngineType.Petrol)
         {
             this.Power = power;
             this.EngineCapacity = engineCapacity;

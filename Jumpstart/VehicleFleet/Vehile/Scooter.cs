@@ -2,6 +2,6 @@
 {
     class Scooter : Vehicle
     {
-        protected override string VehicleType => "Scooter";
+        public override string VehicleType => "Scooter";
     }
 }

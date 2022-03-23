@@ -18,7 +18,7 @@ namespace Jumpstart.VehicleFleet.Vehile
 
     public abstract class Vehicle : Specs.Specs
     {
-        protected abstract string VehicleType { get; }
+        public abstract string VehicleType { get; }
 
         public virtual void ShowInfo()
         {
@@ -35,7 +35,7 @@ namespace Jumpstart.VehicleFleet.Vehile
                               $"\n---Transmission description---" +
                               $"\n\tTransmission type: {Transmission.TransmissionType}" +
                               $"\n\tNumber of transmission: {Transmission.NumberOfTransmission}" +
-                              $"\n\tVendor: {Transmission.Vendor}");
+                              $"\n\tVendor: {Transmission.Vendor}\n");
         }
     }
 }
