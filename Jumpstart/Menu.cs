@@ -3,6 +3,7 @@ using Jumpstart.VehicleFleet.Vehile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
 
 namespace Jumpstart
 {
@@ -379,6 +380,7 @@ namespace Jumpstart
 
             ShowServiceInformation("Cars that have engine capacity more than 1.5 litres:", ConsoleColor.Red);
             GetCarsWithBigEngineCapacity(auto, 1.5);
+            WriteCarsWithBigEngineCapacity(auto, 1.5);
 
             ShowServiceInformation("Engine specs for trucks:", ConsoleColor.Yellow);
             GetEngineSpecs(auto, "Truck");
@@ -402,12 +404,87 @@ namespace Jumpstart
             }
         }
 
+        private static void WriteCarsWithBigEngineCapacity(List<Vehicle> auto, double engineCapacity)
+        {
+            var engineCapacityMore15 = from car in auto
+                                       where car.Engine.EngineCapacity > engineCapacity
+                                       select car;
+
+            string path =
+                @"D:\PROJECTS\[Global] Automated Testing Foundations with .NET\Jumpstart\Jumpstart\VehicleFleet\VehiclesWithBigEngineCapacity.xml";
+
+            var doc = new XmlDocument(); // Создаем новый Xml документ.
+            var xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null); // Создаем Xml заголовок.
+            doc.AppendChild(xmlDeclaration); // Добавляем заголовок перед корневым элементом.
+
+            // Создаем Корневой элемент
+            var root = doc.CreateElement("carsWithBigEngineCapacity"); // carsWithBigEngineCapacity
+
+            // Получаем все записи
+            foreach (var car in engineCapacityMore15)
+            {
+                // Создаем элемент записи vehicle
+                var vehicleNode = doc.CreateElement(car.VehicleType); // passengerCar
+                var vehicleAttribute = doc.CreateAttribute("model");  // Создаем атрибут и нужным именем.
+                vehicleAttribute.InnerText = car.CarModel; // Устанавливаем содержимое атрибута. ("BMW")
+
+                var chasssisNode = doc.CreateElement("chassis"); // chasssis
+
+                // Добавляем атрибут к элементу.
+                vehicleNode.Attributes.Append(vehicleAttribute);
+
+                EncloseNode(vehicleNode, chasssisNode); // вложить шасси в passengerCar
+
+                // Создаем зависимые элементы.
+                AddChildNode("VinChassis", car.Chassis.VinChassis, chasssisNode, doc);
+                AddChildNode("SafeLoad", car.Chassis.SafeLoad.ToString(), chasssisNode, doc);
+                AddChildNode("Wheel", car.Chassis.Wheel.ToString(), chasssisNode, doc);
+
+                // Добавляем запись в каталог.
+                root.AppendChild(vehicleNode);
+
+                //2
+                var engineNode = doc.CreateElement("Engine"); // Engine
+                EncloseNode(vehicleNode, engineNode); // вложить мотор в passengerCar
+                AddChildNode("VinChassis", car.Engine.VinNumber, engineNode, doc);
+                AddChildNode("SafeLoad", car.Engine.EngineCapacity.ToString(), engineNode, doc);
+                AddChildNode("Wheel", car.Engine.EngineType.ToString(), engineNode, doc);
+                AddChildNode("Wheel", car.Engine.Power.ToString(), engineNode, doc);
+
+                root.AppendChild(vehicleNode);
+
+            }
+
+            doc.AppendChild(root);  // Добавляем новый корневой элемент в документ.
+
+            doc.Save(path); // Сохраняем документ.
+        }
+
+        /// <summary>
+        /// Добавить зависимый элемент с текстом.
+        /// </summary>
+        /// <param name="childName"> Имя дочернего элемента. </param>
+        /// <param name="childText"> Текст, который будет внутри дочернего элемента. </param>
+        /// <param name="parentNode"> Родительский элемент. </param>
+        /// <param name="doc"> Xml документ. </param>
+        private static void AddChildNode(string childName, string childText, XmlElement parentNode, XmlDocument doc)
+        {
+            var child = doc.CreateElement(childName);
+            child.InnerText = childText;
+            parentNode.AppendChild(child);
+        }
+
+        private static void EncloseNode(XmlNode parentNode, XmlNode childNode)
+        {
+            parentNode.AppendChild(childNode);
+        }
+
         private static void GetEngineSpecs(List<Vehicle> auto, string vehicleType)
         {
             var engineSpecsForTrucks =
                 auto.Where(
                 car => car.VehicleType.Equals(vehicleType, StringComparison.Ordinal));
-            
+
             foreach (Vehicle car in engineSpecsForTrucks)
             {
                 Console.WriteLine($"{car.VehicleType} **{car.CarModel}**\n" +
