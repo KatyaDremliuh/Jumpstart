@@ -1,4 +1,4 @@
-﻿namespace Jumpstart.VehicleFleet.Specs
+﻿namespace Jumpstart.VehicleFleet.TechnicalSpecs
 {
     public enum TransmissionType
     {
@@ -6,6 +6,6 @@
         Hydromechanical,
         Hydraulic,
         ElectroMechanical,
-        Automatic
+        Automatic,
     }
 }

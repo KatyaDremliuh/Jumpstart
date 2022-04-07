@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Jumpstart
 {
-    class UniqueSigns
+    public static class UniqueSigns
     {
         /*
         * Task_01.
@@ -12,7 +12,7 @@ namespace Jumpstart
         * максимальное количество неодинаковых последовательных символов в строке
         */
 
-        public int FindVariousChars()
+        private static int FindVariousChars()
         {
             Console.Write("Input a string to count the maximum sequence of non-repetitive signs: ");
             string source = Console.ReadLine();
@@ -54,6 +54,15 @@ namespace Jumpstart
             }
 
             return maxNonRepetitive >= countNonRepetitive ? maxNonRepetitive : countNonRepetitive;
+        }
+
+        public static void CountUniqueSigns(string command)
+        {
+            Console.Clear();
+
+            Console.WriteLine(
+                $"The length of the longest sequence with non-repetitive signs is:" +
+                $" {FindVariousChars()}.\n");
         }
     }
 }
