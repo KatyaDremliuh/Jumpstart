@@ -1,15 +1,15 @@
-﻿namespace Jumpstart.VehicleFleet.Specs
+﻿namespace Jumpstart.VehicleFleet.TechnicalSpecs
 {
     public class Chassis
     {
-        public byte Wheel { get; set; }
-        public string VinChassis { get; set; }
-        public ushort SafeLoad { get; set; }
+        public byte NumberOfWheel { get; set; } // количество колес
+        public string VinNumber { get; set; } // номер
+        public ushort SafeLoad { get; set; } // допустимая нагрузка
 
-        public Chassis(string vinChassis, ushort safeLoad, byte wheel = 4)
+        public Chassis(string vinNumber, ushort safeLoad, byte numberOfWheel = 4)
         {
-            this.Wheel = wheel;
-            this.VinChassis = vinChassis;
+            this.NumberOfWheel = numberOfWheel;
+            this.VinNumber = vinNumber;
             this.SafeLoad = safeLoad;
         }
 

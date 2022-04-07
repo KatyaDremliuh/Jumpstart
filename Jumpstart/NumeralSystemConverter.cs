@@ -5,19 +5,17 @@ using System.Text;
 
 namespace Jumpstart
 {
-    /* Task_03.
-     * Написать программу, принимающую из командной строки целое число в десятичной системе,
-     * и основание новой системы счисления (от 2 до 20),
-     * вывести в консоль преобразованное в эту систему исходное число.
-     */
-
-    class NumeralSystemConverter
+    /// <summary>
+    /// The program takes an decimal and a new base of numerical system (from 2 to 20).
+    /// Prints the original number converted to this new base.
+    /// </summary>
+    public static class NumeralSystemConverter
     {
         private const string ErrorMessage1 = "\tThe radix is invalid.";
         private const string ErrorMessage2 = "\tA decimal number to convert should be more than the new base.";
         private const string NewBaseEqualsSourceNumber = "10";
 
-        public static void PrintResult()
+        public static void ConvertNumber(string command)
         {
             string convertToBase = ConvertFromDecimalToBase();
 
