@@ -108,4 +108,14 @@ namespace Jumpstart.VehicleFleet
             Value = value;
         }
     }
+
+    public class InitializationException : Exception
+    {
+        public string Value { get; }
+
+        public InitializationException(string message, string value) : base(message)
+        {
+            Value = value;
+        }
+    }
 }

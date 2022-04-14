@@ -1,6 +1,9 @@
-﻿namespace Jumpstart.VehicleFleet.Vehicle
+﻿using System;
+
+namespace Jumpstart.VehicleFleet.Vehicle
 {
-    class Truck : VehicleRecord
+    [Serializable]
+    public class Truck : VehicleRecord
     {
         public override string VehicleType => "Truck";
     }

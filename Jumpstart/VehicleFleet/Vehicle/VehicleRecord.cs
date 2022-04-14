@@ -1,21 +1,9 @@
-﻿using Jumpstart.VehicleFleet.TechnicalSpecs;
+﻿using System;
+using Jumpstart.VehicleFleet.TechnicalSpecs;
 
 namespace Jumpstart.VehicleFleet.Vehicle
 {
-    /*
-     * Для создания программы по управлению автопарком нужно реализовать следующие сущности в виде отдельных классов:
-     * "Двигатель"(включает в себя поля мощность, объем, тип, серийный номер),
-     * "Шасси"(количество колес, номер, допустимая нагрузка),
-     * "Трансмиссия" (тип, количество передач, производитель).
-     *
-     * С использованием этих классов реализовать сущности
-     * "Легковой автомобиль",
-     * "Грузовик",
-     * "Автобус",
-     * "Скутер" (отличающиеся уникальными полями),
-     * и обеспечить вывод полной информации об объектах этих типов.
-     */
-
+    [Serializable]
     public abstract class VehicleRecord
     {
         public abstract string VehicleType { get; }
@@ -25,6 +13,8 @@ namespace Jumpstart.VehicleFleet.Vehicle
         public Chassis Chassis { get; set; }
         public Engine Engine { get; set; }
         public Transmission Transmission { get; set; }
+
+        //public static List<VehicleRecord> VehicleRecords = new List<VehicleRecord>();
 
         /// <summary>
         /// Returns a list of records added to the list as strings.

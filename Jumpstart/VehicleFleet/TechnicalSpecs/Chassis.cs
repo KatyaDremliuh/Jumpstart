@@ -8,6 +8,11 @@
 
         public Chassis(string vinNumber, ushort safeLoad, byte numberOfWheel = 4)
         {
+            if (numberOfWheel > 20)
+            {
+                throw new InitializationException("Error! Too many wheels!", nameof(numberOfWheel));
+            }
+
             this.NumberOfWheel = numberOfWheel;
             this.VinNumber = vinNumber;
             this.SafeLoad = safeLoad;

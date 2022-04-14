@@ -1,6 +1,6 @@
 ﻿namespace Jumpstart.VehicleFleet.Vehicle
 {
-    class Scooter : VehicleRecord
+    public class Scooter : VehicleRecord
     {
         public override string VehicleType => "Scooter";
 

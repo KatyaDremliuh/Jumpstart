@@ -163,11 +163,7 @@ namespace Jumpstart.VehicleFleet
                 return;
             }
 
-            VehicleRecord updatedRecord = FindOutTypeOfVehicleRecord(); // почему-то не меняется тип на новый :'( ??????
-                                                                        // !!!!!!!!!СТАНИСЛАВ, ОБРАТИТЕ ВАШЕ ВНИМАНИЕ НА ПРОБЛЕМУ, ПЛИЗ!!!!!!!!!!
-            updatedRecord.Id = recordsIdToUpdate;
-
-            controlVehicle.UpdateRecord(updatedRecord);
+            controlVehicle.UpdateRecord(recordsIdToUpdate);
         }
 
         // DELETE
@@ -250,7 +246,7 @@ namespace Jumpstart.VehicleFleet
             }
         }
 
-        private static string GetStringParams(string message)
+        public static string GetStringParams(string message)
         {
             string name;
 
@@ -269,7 +265,7 @@ namespace Jumpstart.VehicleFleet
             return name;
         }
 
-        private static ushort GetSafeLoadAndPower(ushort minValue, ushort maxValue, string message)
+        public static ushort GetSafeLoadAndPower(ushort minValue, ushort maxValue, string message)
         {
             ushort value;
 
@@ -289,7 +285,7 @@ namespace Jumpstart.VehicleFleet
             return value;
         }
 
-        private static byte GetWheels(byte minValue, byte maxValue, string message)
+        public static byte GetWheels(byte minValue, byte maxValue, string message)
         {
             byte numberOfWheel;
 
@@ -309,7 +305,7 @@ namespace Jumpstart.VehicleFleet
             return numberOfWheel;
         }
 
-        private static byte GetWheelsForScooter(byte minValue, byte maxValue, string message)
+        public static byte GetWheelsForScooter(byte minValue, byte maxValue, string message)
         {
             byte numberOfWheel;
 
@@ -329,7 +325,7 @@ namespace Jumpstart.VehicleFleet
             return numberOfWheel;
         }
 
-        private static byte GetTransmission(byte minValue, byte maxValue, string message)
+        public static byte GetTransmission(byte minValue, byte maxValue, string message)
         {
             byte numberOfTransmission;
 
@@ -350,7 +346,7 @@ namespace Jumpstart.VehicleFleet
             return numberOfTransmission;
         }
 
-        private static byte GetNumberOfPassengersSeats(byte minValue, byte maxValue, string message)
+        public static byte GetNumberOfPassengersSeats(byte minValue, byte maxValue, string message)
         {
             byte numberOfPassengersSeats;
 
@@ -371,7 +367,7 @@ namespace Jumpstart.VehicleFleet
             return numberOfPassengersSeats;
         }
 
-        private static double GetCapacity(double minCapacity, double maxCapacity, string message)
+        public static double GetCapacity(double minCapacity, double maxCapacity, string message)
         {
             double capacity;
 
@@ -392,7 +388,7 @@ namespace Jumpstart.VehicleFleet
             return capacity;
         }
 
-        private static EngineType GetEngineType(EngineType defaultEngine, string message)
+        public static EngineType GetEngineType(EngineType defaultEngine, string message)
         {
             int engineType;
             char engine = default;
@@ -423,7 +419,7 @@ namespace Jumpstart.VehicleFleet
             return (EngineType)engineType; ;
         }
 
-        private static TransmissionType GetTransmissionType(TransmissionType defaultTransmission, string message)
+        public static TransmissionType GetTransmissionType(TransmissionType defaultTransmission, string message)
         {
             int transmissionType;
             char transmission = default;
@@ -455,7 +451,7 @@ namespace Jumpstart.VehicleFleet
             return (TransmissionType)transmissionType;
         }
 
-        private static BodyType GetBodyType(BodyType defaultBodyType, string message)
+        public static BodyType GetBodyType(BodyType defaultBodyType, string message)
         {
             int bodyType;
             char body = default;
@@ -488,7 +484,7 @@ namespace Jumpstart.VehicleFleet
             return (BodyType)bodyType;
         }
 
-        private static bool GetSideCarInfo(string message)
+        public static bool GetSideCarInfo(string message)
         {
             bool withSideCar;
 

@@ -1,7 +1,9 @@
-﻿using Jumpstart.VehicleFleet.TechnicalSpecs;
+﻿using System;
+using Jumpstart.VehicleFleet.TechnicalSpecs;
 
 namespace Jumpstart.VehicleFleet.Vehicle
 {
+    [Serializable]
     public class PassengerCar : VehicleRecord
     {
         public override string VehicleType => "PassengerCar";
